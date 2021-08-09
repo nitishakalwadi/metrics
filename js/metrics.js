@@ -5,7 +5,7 @@ var baseUrl = "/metrics/data/in/csv/";
 var baseUrltest = "/metrics/data/in/csv/2021/32/primary_api.csv";
 
 var metaData;
-var primaryApiErrorStatsChartObj = {};
+var primaryApiErrorStatsChartObj = [];
 
 
 $(document).ready(function() {
