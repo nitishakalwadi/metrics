@@ -18,6 +18,7 @@ $(document).ready(function() {
 });
 
 function processAllWeeks(data) {
+	console.log(data);
 	for(weekData in data) {
 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
 		$.get(url, processPrimaryApiErrorStatsSingleFile);
