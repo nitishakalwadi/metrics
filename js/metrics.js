@@ -47,11 +47,11 @@ function processPrimaryApiErrorStatsSingleFile(data) {
 	for(i in csv) {
 		metric = csv[i];
 		console.log(metric);
-		if(typeof primaryApiErrorStatsChartObj[metric.NAME] === "undefined") {
-			primaryApiErrorStatsChartObj[metric.NAME] = [];
-			primaryApiErrorStatsChartObj[metric.NAME]["count"] = [];
+		if(typeof primaryApiErrorStatsChartObj[metric.Name] === "undefined") {
+			primaryApiErrorStatsChartObj[metric.Name] = [];
+			primaryApiErrorStatsChartObj[metric.Name]["count"] = [];
 		}
-		primaryApiErrorStatsChartObj[metric.NAME]["count"].push(metric.COUNT);
+		primaryApiErrorStatsChartObj[metric.Name]["count"].push(metric.COUNT);
 	}
 	
 }
