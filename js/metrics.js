@@ -30,7 +30,7 @@ function processAllWeeksPrimaryApiErrorStats(data) {
 	for(i in data) {
 		var weekData = data[i];
 		
-		if(typeof(primaryApiErrorStatsChartObj["labels"]) == "undefined") {
+		if(typeof primaryApiErrorStatsChartObj["labels"] === "undefined") {
 			primaryApiErrorStatsChartObj["labels"] = [];
 		}
 		label = weekData.year + "-" + weekData.week;
@@ -46,7 +46,7 @@ function processPrimaryApiErrorStatsSingleFile(data) {
 	
 	for(i in data) {
 		metric = data[i];
-		if(typeof(primaryApiErrorStatsChartObj[metric.NAME]) == "undefined") {
+		if(typeof primaryApiErrorStatsChartObj[metric.NAME]) === "undefined") {
 			primaryApiErrorStatsChartObj[metric.NAME] = [];
 			primaryApiErrorStatsChartObj[metric.NAME]["count"] = [];
 		}
