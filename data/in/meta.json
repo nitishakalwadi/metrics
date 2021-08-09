@@ -18,5 +18,25 @@
 		"primary_api_response_time": "primary_api_response_time.csv",
 		"non_primary_api_response_time": "non_primary_api_response_time.csv",
 		"bulk_api_response_time": "bulk_api_response_time.csv"
+	},
+	{
+		"year": 2021,
+		"week": 33,
+		"primary_api_error_stats": "primary_api_error_stats.csv",
+		"non_primary_api_error_stats": "non_primary_api_error_stats.csv",
+		"bulk_api_error_stats": "bulk_api_error_stats.csv",
+		"primary_api_response_time": "primary_api_response_time.csv",
+		"non_primary_api_response_time": "non_primary_api_response_time.csv",
+		"bulk_api_response_time": "bulk_api_response_time.csv"
+	},
+	{
+		"year": 2021,
+		"week": 34,
+		"primary_api_error_stats": "primary_api_error_stats.csv",
+		"non_primary_api_error_stats": "non_primary_api_error_stats.csv",
+		"bulk_api_error_stats": "bulk_api_error_stats.csv",
+		"primary_api_response_time": "primary_api_response_time.csv",
+		"non_primary_api_response_time": "non_primary_api_response_time.csv",
+		"bulk_api_response_time": "bulk_api_response_time.csv"
 	}
 ]
