@@ -29,19 +29,34 @@ function saveMetaData(data) {
 function processAllWeeksPrimaryApiErrorStats(data) {
 	for(i in data) {
 		var weekData = data[i];
+		
+		if(primaryApiErrorStatsChartObj["labels"] == "undefined") {
+			primaryApiErrorStatsChartObj["labels"] = [];
+		}
+		label = weekData.year + "-" + weekData.week;
+		primaryApiErrorStatsChartObj["labels"].push(label);
+
 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
 		$.get(url, processPrimaryApiErrorStatsSingleFile);
 	}
 }
 
 function processPrimaryApiErrorStatsSingleFile(data) {
-	console.log(data);
 	var csv = $.csv.toObjects(data);
-	console.log(csv);
+	
+	for(i in data) {
+		metric = data[i];
+		if(primaryApiErrorStatsChartObj[metric.NAME] == "undefined") {
+			primaryApiErrorStatsChartObj[metric.NAME] = [];
+			primaryApiErrorStatsChartObj[metric.NAME]["count"] = [];
+		}
+		primaryApiErrorStatsChartObj[metric.NAME]["count"].push(metric.COUNT);
+	}
+	
 }
 
 function displayChart(data) {
-
+	console.log(data);
 	var labels = [
 		'January',
 		'February',
