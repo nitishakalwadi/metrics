@@ -46,7 +46,7 @@ function processPrimaryApiErrorStatsSingleFile(data) {
 	
 	for(i in data) {
 		metric = data[i];
-		if(typeof primaryApiErrorStatsChartObj[metric.NAME]) === "undefined") {
+		if(typeof primaryApiErrorStatsChartObj[metric.NAME] === "undefined") {
 			primaryApiErrorStatsChartObj[metric.NAME] = [];
 			primaryApiErrorStatsChartObj[metric.NAME]["count"] = [];
 		}
