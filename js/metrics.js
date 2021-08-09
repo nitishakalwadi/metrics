@@ -43,9 +43,10 @@ function processAllWeeksPrimaryApiErrorStats(data) {
 
 function processPrimaryApiErrorStatsSingleFile(data) {
 	var csv = $.csv.toObjects(data);
-	
-	for(i in data) {
-		metric = data[i];
+	console.log(csv);
+	for(i in csv) {
+		metric = csv[i];
+		console.log(metric);
 		if(typeof primaryApiErrorStatsChartObj[metric.NAME] === "undefined") {
 			primaryApiErrorStatsChartObj[metric.NAME] = [];
 			primaryApiErrorStatsChartObj[metric.NAME]["count"] = [];
