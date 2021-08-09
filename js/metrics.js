@@ -83,6 +83,7 @@ function displayChart(data) {
 		};
 		datasets.push(dataset);
 	}
+	console.log(datasets);
 
 	// var data = {
 	// labels: labels,
