@@ -71,17 +71,19 @@ function displayChart(data) {
 	var datasets = [];
 	for(metric in data["data"]) {
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
-		var borderRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
-
+		
 		singleDataset = data["data"][metric];
+		console.log(singleDataset);
 		dataset = {
 			label: metric,
 			data: singleDataset["count"],
 			backgroundColor: bgRGB,
-			borderColor: borderRGB
+			borderColor: bgRGB
 
 		};
+		console.log(dataset);
 		datasets.push(dataset);
+		console.log(datasets);
 	}
 	console.log(datasets);
 
