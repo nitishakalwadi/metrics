@@ -78,7 +78,7 @@ function displayChart(data) {
 			label: metric,
 			data: singleDataset["count"],
 			backgroundColor: bgRGB,
-			borderColor: borderColor
+			borderColor: borderRGB
 
 		};
 		datasets.push(dataset);
