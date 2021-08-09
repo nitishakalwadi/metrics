@@ -68,7 +68,7 @@ function displayChart(data) {
 	};
 
 	var myChart = new Chart(
-    	'IN-Chart',
+    	document.getElementById('IN-Chart'),
     	config
   	);
 }
