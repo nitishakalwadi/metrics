@@ -61,7 +61,7 @@ function displayChart(data) {
 		}]
 	};
 
-	var = config = {
+	var config = {
   		type: 'line',
   		data,
   		options: {}
