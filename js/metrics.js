@@ -1,3 +1,7 @@
 $(document).ready(function() {
-	alert(123)
+	
+	$.get("/metrics/data/in/csv/2021/32/primary_api.csv", function(data) {
+		console.log(data);
+	});
+
 });
