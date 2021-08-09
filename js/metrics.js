@@ -1,3 +1,3 @@
-$(document).onload(function() {
+$(document).ready(function() {
 	alert(123)
 });
