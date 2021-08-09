@@ -51,7 +51,7 @@ function displayChart(data) {
 		'June',
 	];
 
-	const data = {
+	var data = {
 	labels: labels,
 	datasets: [{
   			label: 'My First dataset',
