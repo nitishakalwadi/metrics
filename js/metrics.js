@@ -23,7 +23,11 @@ function saveMetaData(data) {
 	processAllWeeksNonPrimaryApiErrorStats(data);
 	processAllWeeksBulkApiErrorStats(data);
 
-	displayChart(primaryApiErrorStatsChartObj);
+
+	setTimeout(function(){
+		displayChart(primaryApiErrorStatsChartObj);	
+	}, 5000);
+	
 }
 
 function processAllWeeksPrimaryApiErrorStats(data) {
@@ -58,6 +62,7 @@ function processPrimaryApiErrorStatsSingleFile(data) {
 }
 
 function displayChart(data) {
+
 	console.log(data);
 	// var labels = [
 	// 	'January',
