@@ -47,10 +47,10 @@ function processPrimaryApiErrorStatsSingleFile(data) {
 		metric = csv[i];
 		if(typeof primaryApiErrorStatsChartObj["data"] === "undefined") {
 			primaryApiErrorStatsChartObj["data"] = [];
-			if(typeof primaryApiErrorStatsChartObj["data"][metric.Name] === "undefined") {
-				primaryApiErrorStatsChartObj["data"][metric.Name] = [];
-				primaryApiErrorStatsChartObj["data"][metric.Name]["count"] = [];
-			}
+		}
+		if(typeof primaryApiErrorStatsChartObj["data"][metric.Name] === "undefined") {
+			primaryApiErrorStatsChartObj["data"][metric.Name] = [];
+			primaryApiErrorStatsChartObj["data"][metric.Name]["count"] = [];
 		}
 		primaryApiErrorStatsChartObj["data"][metric.Name]["count"].push(metric.COUNT);
 	}
