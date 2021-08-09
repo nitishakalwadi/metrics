@@ -3,6 +3,8 @@ var baseUrltest = "/metrics/data/in/csv/2021/32/primary_api.csv";
 
 var primaryApiErrorStatsChartObj = {};
 
+var testGlobal = {};
+
 
 $(document).ready(function() {
 
@@ -19,6 +21,7 @@ $(document).ready(function() {
 
 function processAllWeeks(data) {
 	console.log(data);
+	testGlobal = data;
 	for(weekData in data) {
 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
 		$.get(url, processPrimaryApiErrorStatsSingleFile);
