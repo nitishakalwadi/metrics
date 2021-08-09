@@ -69,7 +69,9 @@ function displayChart(data) {
 	// ];
 	var labels = data["labels"];
 	var datasets = [];
+	console.log(data["data"]);
 	for(metric in data["data"]) {
+		console.log("here man");
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
 		
 		singleDataset = data["data"][metric];
