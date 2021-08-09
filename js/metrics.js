@@ -43,38 +43,60 @@ function processAllWeeksPrimaryApiErrorStats(data) {
 
 function processPrimaryApiErrorStatsSingleFile(data) {
 	var csv = $.csv.toObjects(data);
-	console.log(csv);
 	for(i in csv) {
 		metric = csv[i];
-		console.log(metric);
-		if(typeof primaryApiErrorStatsChartObj[metric.Name] === "undefined") {
-			primaryApiErrorStatsChartObj[metric.Name] = [];
-			primaryApiErrorStatsChartObj[metric.Name]["count"] = [];
+		if(typeof primaryApiErrorStatsChartObj["data"] === "undefined") {
+			primaryApiErrorStatsChartObj["data"] = [];
+			if(typeof primaryApiErrorStatsChartObj["data"][metric.Name] === "undefined") {
+				primaryApiErrorStatsChartObj["data"][metric.Name] = [];
+				primaryApiErrorStatsChartObj["data"][metric.Name]["count"] = [];
+			}
 		}
-		primaryApiErrorStatsChartObj[metric.Name]["count"].push(metric.COUNT);
+		primaryApiErrorStatsChartObj["data"][metric.Name]["count"].push(metric.COUNT);
 	}
 	
 }
 
 function displayChart(data) {
 	console.log(data);
-	var labels = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-	];
+	// var labels = [
+	// 	'January',
+	// 	'February',
+	// 	'March',
+	// 	'April',
+	// 	'May',
+	// 	'June',
+	// ];
+	var labels = data["labels"];
+	var datasets = [];
+	for(metric in data["data"]) {
+		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
+		var borderRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
+
+		singleDataset = data["data"][metric];
+		dataset = {
+			label: metric,
+			data: singleDataset["count"],
+			backgroundColor: bgRGB,
+			borderColor: borderColor
+
+		};
+		datasets.push(dataset);
+	}
+
+	// var data = {
+	// labels: labels,
+	// datasets: [{
+ //  			label: 'My First dataset',
+	//   		backgroundColor: 'rgb(255, 99, 132)',
+ //  			borderColor: 'rgb(255, 99, 132)',
+ //  			data: [0, 10, 5, 2, 20, 30, 45],
+	// 	}]
+	// };
 
 	var data = {
-	labels: labels,
-	datasets: [{
-  			label: 'My First dataset',
-	  		backgroundColor: 'rgb(255, 99, 132)',
-  			borderColor: 'rgb(255, 99, 132)',
-  			data: [0, 10, 5, 2, 20, 30, 45],
-		}]
+		labels: labels,
+		datasets: datasets
 	};
 
 	var config = {
@@ -95,4 +117,9 @@ function processAllWeeksNonPrimaryApiErrorStats(data) {
 
 function processAllWeeksBulkApiErrorStats(data) {
 
+}
+
+
+function getColor() {
+	return Math.floor(Math.random()*1000%255);
 }
