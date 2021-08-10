@@ -2,7 +2,7 @@
 	{
 		"year": 2021,
 		"week": 31,
-		"primary_api_error_stats": "primary_api_error_stats.csv",
+		"primary_api_error_stats": "primary_api_error_stats_31.csv",
 		"non_primary_api_error_stats": "non_primary_api_error_stats.csv",
 		"bulk_api_error_stats": "bulk_api_error_stats.csv",
 		"primary_api_response_time": "primary_api_response_time.csv",
@@ -12,7 +12,7 @@
 	{
 		"year": 2021,
 		"week": 32,
-		"primary_api_error_stats": "primary_api_error_stats.csv",
+		"primary_api_error_stats": "primary_api_error_stats_32.csv",
 		"non_primary_api_error_stats": "non_primary_api_error_stats.csv",
 		"bulk_api_error_stats": "bulk_api_error_stats.csv",
 		"primary_api_response_time": "primary_api_response_time.csv",
@@ -22,7 +22,7 @@
 	{
 		"year": 2021,
 		"week": 33,
-		"primary_api_error_stats": "primary_api_error_stats.csv",
+		"primary_api_error_stats": "primary_api_error_stats_33.csv",
 		"non_primary_api_error_stats": "non_primary_api_error_stats.csv",
 		"bulk_api_error_stats": "bulk_api_error_stats.csv",
 		"primary_api_response_time": "primary_api_response_time.csv",
@@ -32,7 +32,7 @@
 	{
 		"year": 2021,
 		"week": 34,
-		"primary_api_error_stats": "primary_api_error_stats.csv",
+		"primary_api_error_stats": "primary_api_error_stats_34.csv",
 		"non_primary_api_error_stats": "non_primary_api_error_stats.csv",
 		"bulk_api_error_stats": "bulk_api_error_stats.csv",
 		"primary_api_response_time": "primary_api_response_time.csv",
