@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 function saveMetaData(data) {
 	metaData = data;
-	processAllWeeksPrimaryApiErrorStats(data);
+	processAllWeeksPrimaryApiErrorStats(0);
 	processAllWeeksNonPrimaryApiErrorStats(data);
 	processAllWeeksBulkApiErrorStats(data);
 
@@ -30,10 +30,10 @@ function saveMetaData(data) {
 	
 }
 
-function processAllWeeksPrimaryApiErrorStats(data) {
-	for(i in data) {
-		var weekData = data[i];
-		
+function processAllWeeksPrimaryApiErrorStats(metaDataIndex) {
+	if(typeof metaData[metaDataIndex] !== 'undefined') {
+		var weekData = metaData[metaDataIndex];
+
 		if(typeof primaryApiErrorStatsChartObj["labels"] === "undefined") {
 			primaryApiErrorStatsChartObj["labels"] = [];
 		}
@@ -41,9 +41,31 @@ function processAllWeeksPrimaryApiErrorStats(data) {
 		primaryApiErrorStatsChartObj["labels"].push(label);
 
 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
-		$.get(url, processPrimaryApiErrorStatsSingleFile);
+		$.get(url, function(resp) {
+			
+			processPrimaryApiErrorStatsSingleFile(resp)
+
+			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
+				processAllWeeksPrimaryApiErrorStats(metaDataIndex+1);
+			}
+		});
 	}
 }
+
+// function processAllWeeksPrimaryApiErrorStats(data) {
+// 	for(i in data) {
+// 		var weekData = data[i];
+		
+// 		if(typeof primaryApiErrorStatsChartObj["labels"] === "undefined") {
+// 			primaryApiErrorStatsChartObj["labels"] = [];
+// 		}
+// 		label = weekData.year + "-" + weekData.week;
+// 		primaryApiErrorStatsChartObj["labels"].push(label);
+
+// 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+// 		$.get(url, processPrimaryApiErrorStatsSingleFile);
+// 	}
+// }
 
 function processPrimaryApiErrorStatsSingleFile(data) {
 	var csv = $.csv.toObjects(data);
