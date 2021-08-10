@@ -79,6 +79,8 @@ function processPrimaryApiErrorStatsSingleFile(data) {
 			primaryApiErrorStatsChartObj["data"][metric.Name] = [];
 			primaryApiErrorStatsChartObj["data"][metric.Name]["count"] = [];
 		}
+		console.log(metric);
+		console.log(metric.COUNT);
 		primaryApiErrorStatsChartObj["data"][metric.Name]["count"].push(metric.COUNT);
 	}
 	
