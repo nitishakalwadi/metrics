@@ -1,4 +1,4 @@
 Name,COUNT,500 %,520 %,521 %,400 %
-WebTransaction/RestWebService/v1.1/customer/get (GET),757701,0.0,0.0,0.0,0.0
-WebTransaction/RestWebService/v1.1/transaction/add (POST),415866,0.0,0.0,0.0,0.0
-WebTransaction/RestWebService/v1.1/customer/add (POST),52992,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/get (GET),1,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/transaction/add (POST),4,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/add (POST),2,0.0,0.0,0.0,0.0
