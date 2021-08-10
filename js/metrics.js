@@ -24,9 +24,8 @@ function saveMetaData(data) {
 	processAllWeeksBulkApiErrorStats(data);
 
 
-	setTimeout(function(){
-		displayChart(primaryApiErrorStatsChartObj);	
-	}, 5000);
+	displayChart(primaryApiErrorStatsChartObj);	
+	
 	
 }
 
