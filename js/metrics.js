@@ -24,7 +24,7 @@ function saveMetaData(data) {
 	processAllWeeksBulkApiErrorStats(data);
 
 
-	displayChart(primaryApiErrorStatsChartObj);	
+	
 	
 	
 }
@@ -46,6 +46,8 @@ function processAllWeeksPrimaryApiErrorStats(metaDataIndex) {
 
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				processAllWeeksPrimaryApiErrorStats(metaDataIndex+1);
+			} else {
+				displayChart(primaryApiErrorStatsChartObj);	
 			}
 		});
 	}
