@@ -93,8 +93,8 @@ function processFiles(cluster, metaDataIndex, idx) {
 }
 
 function processSingleFile(cluster, file, metaDataIndex, idx) {
-	var file = fileData[cluster][metaDataIndex][file];
-	var csv = $.csv.toObjects(file);
+	var singleFile = fileData[cluster][metaDataIndex][file];
+	var csv = $.csv.toObjects(singleFile);
 	for(i in csv) {
 		metric = csv[i];
 		
