@@ -45,6 +45,7 @@ function saveMetaData(data) {
 }
 
 function fetchFiles(cluster, metaDataIndex) {
+	var localMetaDataIndex = metaDataIndex;
 	if(typeof metaData[metaDataIndex] !== 'undefined') {
 		var weekData = metaData[metaDataIndex];
 
@@ -78,7 +79,7 @@ function fetchFiles(cluster, metaDataIndex) {
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				fetchFiles(cluster, metaDataIndex+1);
 			} else {
-				processFiles(cluster, metaDataIndex);
+				processFiles(cluster, localMetaDataIndex);
 			}
 		});
 	}
