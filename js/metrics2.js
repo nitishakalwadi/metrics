@@ -1,8 +1,7 @@
 //csv to object library used
 //https://github.com/evanplaice/jquery-csv/
 
-var baseUrl = "/metrics/data/in/csv/";
-var baseUrltest = "/metrics/data/in/csv/2021/32/primary_api.csv";
+var baseUrl = "/metrics/data/";
 
 var metaData = [];
 var fileData = [];
@@ -17,14 +16,15 @@ $(document).ready(function() {
 });
 
 function init() {
-	initMetaData();
+	initMetaData('in');
 	
 }
 
-function initMetaData() {
-	$.get("/metrics/data/in/meta.json", function(resp) {
+function initMetaData(cluster) {
+	url = baseUrl + cluster + "meta.json";
+	$.get(url, function(resp) {
 		saveMetaData(resp);
-		fetchFiles(0);
+		fetchFiles(cluster, 0);
 	});
 }
 
@@ -41,7 +41,7 @@ function saveMetaData(data) {
 	metaData = data;
 }
 
-function fetchFiles(metaDataIndex) {
+function fetchFiles(cluster, metaDataIndex) {
 	if(typeof metaData[metaDataIndex] !== 'undefined') {
 		var weekData = metaData[metaDataIndex];
 
@@ -58,17 +58,32 @@ function fetchFiles(metaDataIndex) {
 		// });
 
 
-		if(typeof fileData[metaDataIndex] === 'undefined')
-			fileData[metaDataIndex] = [];
+		if(typeof fileData[cluster] === 'undefined')
+			fileData[cluster] = [];
+		if(typeof fileData[cluster][metaDataIndex] === 'undefined')
+			fileData[cluster][metaDataIndex] = [];
 
-		var primaryApiErrorStatsUrl = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
-		var nonPrimaryApiErrorStatsUrl = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		var primaryApiErrorStatsUrl 		= baseUrl + cluster + "/csv/" + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		var nonPrimaryApiErrorStatsUrl 		= baseUrl + cluster + "/csv/" + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		var bulkApiErrorStatsUrl 			= baseUrl + cluster + "/csv/" + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		var primaryApiResponseTimeUrl 		= baseUrl + cluster + "/csv/" + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		var nonPrimaryApiResponseTimeUrl 	= baseUrl + cluster + "/csv/" + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		var bulkApiResponseTimeUrl 			= baseUrl + cluster + "/csv/" + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+
 		$.when(
 			$.get(primaryApiErrorStatsUrl),
-			$.get(nonPrimaryApiErrorStatsUrl)
-		).done(function(primaryApiErrorStatsData, nonPrimaryApiErrorStatsData) {
-			fileData[metaDataIndex]["primary_api_error_stats"] = primaryApiErrorStatsData[0];
-			fileData[metaDataIndex]["non_primary_api_error_stats"] = nonPrimaryApiErrorStatsData[0];
+			$.get(nonPrimaryApiErrorStatsUrl),
+			$.get(bulkApiResponseTimeUrl),
+			$.get(primaryApiResponseTimeUrl),
+			$.get(nonPrimaryApiResponseTimeUrl),
+			$.get(bulkApiResponseTimeUrl)
+		).done(function(primaryApiErrorStatsData, nonPrimaryApiErrorStatsData, bulkApiErrorStatsData, primaryApiResponseTimeData, nonPrimaryApiResponseTimeData, bulkApiResponseTimeData) {
+			fileData[cluster][metaDataIndex]["primary_api_error_stats"] 		= primaryApiErrorStatsData[0];
+			fileData[cluster][metaDataIndex]["non_primary_api_error_stats"] 	= nonPrimaryApiErrorStatsData[0];
+			fileData[cluster][metaDataIndex]["bulk_api_error_stats"] 			= bulkApiErrorStatsData[0];
+			fileData[cluster][metaDataIndex]["primary_api_response_time"] 		= primaryApiResponseTimeData[0];
+			fileData[cluster][metaDataIndex]["non_primary_api_response_time"] 	= nonPrimaryApiResponseTimeData[0];
+			fileData[cluster][metaDataIndex]["bulk_api_response_time"] 			= bulkApiResponseTimeData[0];
 
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				fetchFiles(metaDataIndex+1);
