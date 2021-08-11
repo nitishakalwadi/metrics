@@ -4,8 +4,8 @@
 var baseUrl = "/metrics/data/in/csv/";
 var baseUrltest = "/metrics/data/in/csv/2021/32/primary_api.csv";
 
-var metaData;
-var fileData;
+var metaData = [];
+var fileData = [];
 var primaryApiErrorStatsChartObj = [];
 
 var myChart;
@@ -49,7 +49,7 @@ function fetchFiles(metaDataIndex) {
 		$.get(url, function(data) {
 			if(typeof fileData[metaDataIndex] === 'undefined')
 				fileData[metaDataIndex] = [];
-			
+
 			fileData[metaDataIndex]["primary_api_error_stats"] = data;
 
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
