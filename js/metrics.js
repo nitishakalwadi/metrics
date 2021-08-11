@@ -110,8 +110,10 @@ function processPrimaryApiErrorStatsSingleFile(data, idx) {
 		if(typeof primaryApiErrorStatsChartObj["metric_names"] === 'undefined') {
 			primaryApiErrorStatsChartObj["metric_names"] = [];
 		}
-		primaryApiErrorStatsChartObj["metric_names"].push(metric.Name);
-		primaryApiErrorStatsChartObj["metric_names"] = new Set(primaryApiErrorStatsChartObj["metric_names"]);
+		if(!primaryApiErrorStatsChartObj["metric_names"].includes(metric.Name)) {
+			primaryApiErrorStatsChartObj["metric_names"].push(metric.Name);
+		}
+		
 	}
 	
 }
