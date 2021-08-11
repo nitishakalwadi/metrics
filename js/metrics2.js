@@ -124,7 +124,7 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 			}
 		}
 		
-		if(chartData[cluster]["metric_names"] === 'undefined')
+		if(typeof chartData[cluster]["metric_names"] === 'undefined')
 			chartData[cluster]["metric_names"] = [];
 
 		if(!chartData[cluster]["metric_names"].includes(metric.Name))
