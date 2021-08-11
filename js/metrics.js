@@ -11,11 +11,16 @@ var myChart;
 
 
 $(document).ready(function() {
-	clearGlobals();
 	init(0);
 });
 
 function init(metaDataIndex) {
+	clearGlobals();
+	initMetaData();
+	
+}
+
+function initMetaData() {
 	$.get("/metrics/data/in/meta.json", function(resp) {
 		saveMetaData(resp, metaDataIndex);
 	});
