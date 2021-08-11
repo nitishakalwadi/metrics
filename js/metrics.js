@@ -106,6 +106,9 @@ function processPrimaryApiErrorStatsSingleFile(data, idx) {
 				primaryApiErrorStatsChartObj["data"][metric.Name]["count"][i] = 0;
 			}
 		}
+
+		primaryApiErrorStatsChartObj["metric_names"].push(metric.Name);
+		Set(primaryApiErrorStatsChartObj["metric_names"]);
 	}
 	
 }
