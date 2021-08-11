@@ -86,7 +86,7 @@ function fetchFiles(cluster, metaDataIndex) {
 			fileData[cluster][metaDataIndex]["bulk_api_response_time"] 			= bulkApiResponseTimeData[0];
 
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
-				fetchFiles(metaDataIndex+1);
+				fetchFiles(cluster, metaDataIndex+1);
 			}
 		});
 	}
