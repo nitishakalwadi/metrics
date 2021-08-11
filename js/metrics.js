@@ -15,7 +15,7 @@ $(document).ready(function() {
 	init(0);
 });
 
-functioninit(metaDataIndex) {
+function init(metaDataIndex) {
 	$.get("/metrics/data/in/meta.json", function(resp) {
 		saveMetaData(resp, metaDataIndex);
 	});
