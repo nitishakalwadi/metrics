@@ -10,7 +10,7 @@ var primaryApiErrorStatsChartObj = [];
 
 var myChart;
 var myMultiSelect;
-
+var gMetaDataIndex;
 
 $(document).ready(function() {
 	init();
@@ -23,11 +23,11 @@ function init() {
 
 function initMetaData(cluster) {
 	url = baseUrl + cluster + "/meta.json";
-	var metaDataIndex = 0;
+	gMetaDataIndex = 0;
 	var idx = 0;
 	$.get(url, function(resp) {
 		saveMetaData(resp);
-		fetchFiles(cluster, metaDataIndex);
+		fetchFiles(cluster, gMetaDataIndex);
 	});
 }
 
@@ -45,7 +45,6 @@ function saveMetaData(data) {
 }
 
 function fetchFiles(cluster, metaDataIndex) {
-	var localMetaDataIndex = metaDataIndex;
 	if(typeof metaData[metaDataIndex] !== 'undefined') {
 		var weekData = metaData[metaDataIndex];
 
@@ -79,7 +78,7 @@ function fetchFiles(cluster, metaDataIndex) {
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				fetchFiles(cluster, metaDataIndex+1);
 			} else {
-				processFiles(cluster, localMetaDataIndex);
+				processFiles(cluster, gMetaDataIndex);
 			}
 		});
 	}
