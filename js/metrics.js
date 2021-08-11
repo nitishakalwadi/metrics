@@ -13,17 +13,12 @@ var myMultiSelect;
 
 $(document).ready(function() {
 	init(0);
-	initFilters(0);
 });
 
 function init(metaDataIndex) {
 	clearGlobals();
 	initMetaData(metaDataIndex);
 	
-}
-
-function initFilters(metaDataIndex) {
-	initMetaData(metaDataIndex);
 }
 
 function initMetaData(metaDataIndex) {
@@ -71,6 +66,7 @@ function processAllWeeksPrimaryApiErrorStats(metaDataIndex, idx) {
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				processAllWeeksPrimaryApiErrorStats(metaDataIndex+1, idx+1);
 			} else {
+				initFilters(primaryApiErrorStatsChartObj);
 				displayChart(primaryApiErrorStatsChartObj);	
 			}
 		});

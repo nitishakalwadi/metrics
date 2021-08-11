@@ -46,6 +46,13 @@ function fetchFiles(metaDataIndex) {
 		var weekData = metaData[metaDataIndex];
 
 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		$.get(url, function(data) {
+			fileData[metaDataIndex]["primary_api_error_stats"] = data;
+
+			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
+				fetchFiles(metaDataIndex+1);
+			}
+		});
 	}
 }
 
