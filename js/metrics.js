@@ -171,7 +171,11 @@ function initMultiSelect(data) {
 		$("#IN-select").append(option);
 	}
 
-	myMultiSelect = $("#IN-select").multiselect().multiselectfilter();
+	myMultiSelect = $("#IN-select").multiselect({
+		click: function(event, ui) {
+			init(0);
+		}
+	}).multiselectfilter();
 }
 
 function processAllWeeksNonPrimaryApiErrorStats(data) {
