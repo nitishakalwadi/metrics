@@ -5,6 +5,7 @@ var baseUrl = "/metrics/data/";
 
 var metaData = [];
 var fileData = [];
+var chartData = [];
 var primaryApiErrorStatsChartObj = [];
 
 var myChart;
@@ -22,9 +23,11 @@ function init() {
 
 function initMetaData(cluster) {
 	url = baseUrl + cluster + "/meta.json";
+	var metaDataIndex = 0;
+	var idx = 0;
 	$.get(url, function(resp) {
 		saveMetaData(resp);
-		fetchFiles(cluster, 0);
+		fetchFiles(cluster, metaDataIndex);
 	});
 }
 
@@ -44,19 +47,6 @@ function saveMetaData(data) {
 function fetchFiles(cluster, metaDataIndex) {
 	if(typeof metaData[metaDataIndex] !== 'undefined') {
 		var weekData = metaData[metaDataIndex];
-
-		// var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
-		// $.get(url, function(data) {
-		// 	if(typeof fileData[metaDataIndex] === 'undefined')
-		// 		fileData[metaDataIndex] = [];
-
-		// 	fileData[metaDataIndex]["primary_api_error_stats"] = data;
-
-		// 	if(typeof metaData[metaDataIndex+1] !== 'undefined') {
-		// 		fetchFiles(metaDataIndex+1);
-		// 	}
-		// });
-
 
 		if(typeof fileData[cluster] === 'undefined')
 			fileData[cluster] = [];
@@ -87,8 +77,59 @@ function fetchFiles(cluster, metaDataIndex) {
 
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				fetchFiles(cluster, metaDataIndex+1);
+			} else {
+				processFiles(cluster, metaDataIndex, 0);
 			}
 		});
+	}
+}
+
+function processFiles(cluster, metaDataIndex, idx) {
+	while(fileData[cluster][metaDataIndex] !== 'undefined') {
+		processSingleFile(cluster, 'primary_api_error_stats', metaDataIndex, idx);
+		metaDataIndex++;
+		idx++;
+	}
+}
+
+function processSingleFile(cluster, file, metaDataIndex, idx) {
+	var file = fileData[cluster][metaDataIndex][file];
+	var csv = $.csv.toObjects(file);
+	for(i in csv) {
+		metric = csv[i];
+		
+		if(typeof chartData[cluster] === 'undefined')
+			chartData[cluster] = [];
+		if(typeof chartData[cluster][file] === 'undefined')
+			chartData[cluster][file] = [];
+		
+		if(typeof chartData[cluster][file][metric.Name] === 'undefined') {
+			chartData[cluster][file][metric.Name] = [];
+			chartData[cluster][file][metric.Name]["count"] = [];
+			chartData[cluster][file][metric.Name]["500"] = [];
+		}
+		
+		chartData[cluster][file][metric.Name]["count"][idx] = metric.COUNT;
+		// chartData[cluster][file][metric.Name]["500"][idx] = metric.COUNT;
+		
+
+		var metricNames = array("count", "500");
+		for(i in metricNames) {
+			metricName = metricNames[i];
+			for(i=0; i<chartData[cluster][file][metric.Name][metricName].length; i++) {
+				if(typeof chartData[cluster][file][metric.Name][metricName][i] === 'undefined') {
+					chartData[cluster][file][metric.Name][metricName][i] = 0;
+				}
+			}
+		}
+		
+		if(chartData[cluster]["metric_names"] === 'undefined')
+			chartData[cluster]["metric_names"] = [];
+
+		if(!chartData[cluster]["metric_names"].includes(metric.Name))
+			chartData[cluster]["metric_names"].push(metric.Name);
+
+		
 	}
 }
 
