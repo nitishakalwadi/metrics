@@ -62,7 +62,7 @@ function fetchFiles(metaDataIndex) {
 			fileData[metaDataIndex] = [];
 
 		var primaryApiErrorStatsUrl = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
-		var nonPrimaryApiErrorStatsUrl = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.non_primary_api_error_stats;
+		var nonPrimaryApiErrorStatsUrl = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
 		$.when(
 			$.get(primaryApiErrorStatsUrl),
 			$.get(nonPrimaryApiErrorStatsUrl)
