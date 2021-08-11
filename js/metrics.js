@@ -96,7 +96,7 @@ function processPrimaryApiErrorStatsSingleFile(data, idx) {
 		//primaryApiErrorStatsChartObj["data"][metric.Name]["count"].push(metric.COUNT);
 		primaryApiErrorStatsChartObj["data"][metric.Name]["count"][idx] = metric.COUNT;
 
-		for(i in primaryApiErrorStatsChartObj["data"][metric.Name]["count"]) {
+		for(i=0; i<primaryApiErrorStatsChartObj["data"][metric.Name]["count"].length; i++) {
 			if(typeof primaryApiErrorStatsChartObj["data"][metric.Name]["count"][i] === 'undefined') {
 				primaryApiErrorStatsChartObj["data"][metric.Name]["count"][i] = 0;
 			}
@@ -110,7 +110,6 @@ function displayChart(data) {
 	var labels = data["labels"];
 	var datasets = [];
 	for(metric in data["data"]) {
-		console.log("here man");
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
 		
 		singleDataset = data["data"][metric];
