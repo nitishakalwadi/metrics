@@ -10,7 +10,6 @@ var primaryApiErrorStatsChartObj = [];
 
 var myChart;
 var myMultiSelect;
-var gMetaDataIndex;
 
 $(document).ready(function() {
 	init();
@@ -78,7 +77,7 @@ function fetchFiles(cluster, metaDataIndex) {
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				fetchFiles(cluster, metaDataIndex+1);
 			} else {
-				processFiles(cluster, gMetaDataIndex);
+				processFiles(cluster);
 			}
 		});
 	}
@@ -86,11 +85,20 @@ function fetchFiles(cluster, metaDataIndex) {
 
 function processFiles(cluster, metaDataIndex) {
 	var idx = 0;
-	while(fileData[cluster][metaDataIndex] !== 'undefined') {
-		console.log("processing single file");
-		processSingleFile(cluster, 'primary_api_error_stats', metaDataIndex, idx);
-		metaDataIndex++;
-		idx++;
+	// while(fileData[cluster][metaDataIndex] !== 'undefined') {
+	// 	console.log("processing single file");
+	// 	processSingleFile(cluster, 'primary_api_error_stats', metaDataIndex, idx);
+	// 	metaDataIndex++;
+	// 	idx++;
+	// }
+
+	for(i in fileData[cluster]) {
+		if(typeof fileData[cluster][i] !== 'undefined') {
+			console.log("processing single file");
+			processSingleFile(cluster, 'primary_api_error_stats', i, idx);
+			i++;
+			idx++;
+		}
 	}
 }
 
