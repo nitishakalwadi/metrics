@@ -160,10 +160,11 @@ function initFilters(data) {
 }
 
 function initMultiSelect(data) {
-	if(typeof myMultiSelect !== 'undefined') {
-		myMultiSelect.destroy();
-	}
+	// if(typeof myMultiSelect !== 'undefined') {
+	// 	myMultiSelect.destroy();
+	// }
 
+	$("#IN-select").multiselect("destroy");
 	$("#IN-select").html("");
 	for(i in data) {
 		var option = $('<option/>');
@@ -171,11 +172,12 @@ function initMultiSelect(data) {
 		$("#IN-select").append(option);
 	}
 
-	myMultiSelect = $("#IN-select").multiselect({
+	$("#IN-select").multiselect({
 		click: function(event, ui) {
 			init(0);
 		}
 	}).multiselectfilter();
+
 }
 
 function processAllWeeksNonPrimaryApiErrorStats(data) {
