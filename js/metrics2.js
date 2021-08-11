@@ -45,16 +45,30 @@ function fetchFiles(metaDataIndex) {
 	if(typeof metaData[metaDataIndex] !== 'undefined') {
 		var weekData = metaData[metaDataIndex];
 
-		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
-		$.get(url, function(data) {
-			if(typeof fileData[metaDataIndex] === 'undefined')
-				fileData[metaDataIndex] = [];
+		// var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		// $.get(url, function(data) {
+		// 	if(typeof fileData[metaDataIndex] === 'undefined')
+		// 		fileData[metaDataIndex] = [];
 
-			fileData[metaDataIndex]["primary_api_error_stats"] = data;
+		// 	fileData[metaDataIndex]["primary_api_error_stats"] = data;
 
-			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
-				fetchFiles(metaDataIndex+1);
-			}
+		// 	if(typeof metaData[metaDataIndex+1] !== 'undefined') {
+		// 		fetchFiles(metaDataIndex+1);
+		// 	}
+		// });
+
+
+		if(typeof fileData[metaDataIndex] === 'undefined')
+			fileData[metaDataIndex] = [];
+
+		var primaryApiErrorStatsUrl = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+		var nonPrimaryApiErrorStatsUrl = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.non_primary_api_error_stats;
+		$.when(
+			$.get(primaryApiErrorStatsUrl),
+			$.get(nonPrimaryApiErrorStatsUrl)
+		).done(function(primaryApiErrorStatsData, nonPrimaryApiErrorStatsData) {
+			fileData[metaDataIndex]["primary_api_error_stats"] = primaryApiErrorStatsData[0];
+			fileData[metaDataIndex]["non_primary_api_error_stats"] = nonPrimaryApiErrorStatsData[0];
 		});
 	}
 }
