@@ -86,6 +86,7 @@ function fetchFiles(cluster, metaDataIndex) {
 
 function processFiles(cluster, metaDataIndex, idx) {
 	while(fileData[cluster][metaDataIndex] !== 'undefined') {
+		console.log("processing single file");
 		processSingleFile(cluster, 'primary_api_error_stats', metaDataIndex, idx);
 		metaDataIndex++;
 		idx++;
