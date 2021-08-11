@@ -108,7 +108,7 @@ function processPrimaryApiErrorStatsSingleFile(data, idx) {
 		}
 
 		primaryApiErrorStatsChartObj["metric_names"].push(metric.Name);
-		Set(primaryApiErrorStatsChartObj["metric_names"]);
+		primaryApiErrorStatsChartObj["metric_names"] = Set(primaryApiErrorStatsChartObj["metric_names"]);
 	}
 	
 }
