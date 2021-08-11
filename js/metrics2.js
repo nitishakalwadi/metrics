@@ -146,7 +146,7 @@ function mydisplayChart(cluster, filters) {
 	for(metric in chartData[cluster]["primary_api_error_stats"]) {
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
 		
-		singleDataset = data["data"][metric];
+		singleDataset = chartData[cluster]["primary_api_error_stats"];
 		dataset = {
 			label: metric,
 			data: singleDataset["count"],
