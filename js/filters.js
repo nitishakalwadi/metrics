@@ -1,8 +1,8 @@
-$(document).ready(function() {
+// $(document).ready(function() {
 	
-	filterInit();
+// 	filterInit();
 
-});
+// });
 
 function filterInit() {
 	initSelectFilter();

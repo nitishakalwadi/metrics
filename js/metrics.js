@@ -8,6 +8,7 @@ var metaData;
 var primaryApiErrorStatsChartObj = [];
 
 var myChart;
+var myMultiSelect;
 
 
 $(document).ready(function() {
@@ -65,6 +66,7 @@ function processAllWeeksPrimaryApiErrorStats(metaDataIndex, idx) {
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				processAllWeeksPrimaryApiErrorStats(metaDataIndex+1, idx+1);
 			} else {
+				initFilters(primaryApiErrorStatsChartObj);
 				displayChart(primaryApiErrorStatsChartObj);	
 			}
 		});
@@ -151,6 +153,25 @@ function displayChart(data) {
     	document.getElementById('IN-Chart'),
     	config
   	);
+}
+
+function initFilters(data) {
+	initMultiSelect(data["metric_names"]);
+}
+
+function initMultiSelect(data) {
+	// if(typeof myMultiSelect !== 'undefined') {
+	// 	myMultiSelect.destroy();
+	// }
+
+	$("#IN-select").html("");
+	for(i in data) {
+		var option = $('<option/>');
+		option.val(data[i]).html(data[i]);
+		$("#IN-select").append(option);
+	}
+
+	// myMultiSelect = $("#IN-select").multiselect();
 }
 
 function processAllWeeksNonPrimaryApiErrorStats(data) {
