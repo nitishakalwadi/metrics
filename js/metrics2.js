@@ -5,6 +5,7 @@ var baseUrl = "/metrics/data/in/csv/";
 var baseUrltest = "/metrics/data/in/csv/2021/32/primary_api.csv";
 
 var metaData;
+var fileData;
 var primaryApiErrorStatsChartObj = [];
 
 var myChart;
@@ -12,23 +13,18 @@ var myMultiSelect;
 
 
 $(document).ready(function() {
-	init(0);
-	initFilters(0);
+	init();
 });
 
-function init(metaDataIndex) {
-	clearGlobals();
-	initMetaData(metaDataIndex);
+function init() {
+	initMetaData();
 	
 }
 
-function initFilters(metaDataIndex) {
-	initMetaData(metaDataIndex);
-}
-
-function initMetaData(metaDataIndex) {
+function initMetaData() {
 	$.get("/metrics/data/in/meta.json", function(resp) {
-		saveMetaData(resp, metaDataIndex);
+		saveMetaData(resp);
+		fetchFiles(0);
 	});
 }
 
@@ -41,16 +37,16 @@ function clearGlobals() {
 	primaryApiErrorStatsChartObj = [];
 }
 
-function saveMetaData(data, metaDataIndex) {
+function saveMetaData(data) {
 	metaData = data;
-	processAllWeeksPrimaryApiErrorStats(metaDataIndex, 0);
-	processAllWeeksNonPrimaryApiErrorStats(data);
-	processAllWeeksBulkApiErrorStats(data);
+}
 
+function fetchFiles(metaDataIndex) {
+	if(typeof metaData[metaDataIndex] !== 'undefined') {
+		var weekData = metaData[metaDataIndex];
 
-	
-	
-	
+		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
+	}
 }
 
 function processAllWeeksPrimaryApiErrorStats(metaDataIndex, idx) {
@@ -71,6 +67,7 @@ function processAllWeeksPrimaryApiErrorStats(metaDataIndex, idx) {
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				processAllWeeksPrimaryApiErrorStats(metaDataIndex+1, idx+1);
 			} else {
+				initFilters(primaryApiErrorStatsChartObj);
 				displayChart(primaryApiErrorStatsChartObj);	
 			}
 		});
