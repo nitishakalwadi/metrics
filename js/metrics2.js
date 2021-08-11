@@ -25,7 +25,7 @@ function initMetaData(cluster) {
 	gMetaDataIndex = 0;
 	var idx = 0;
 	$.get(url, function(resp) {
-		saveMetaData(resp);
+		saveMetaData(resp, cluster);
 		fetchFiles(cluster, gMetaDataIndex);
 	});
 }
@@ -39,13 +39,16 @@ function clearGlobals() {
 	primaryApiErrorStatsChartObj = [];
 }
 
-function saveMetaData(data) {
-	metaData = data;
+function saveMetaData(data, cluster) {
+	if(typeof metaData[cluster] === 'undefined') {
+		metaData[cluster] = [];
+	}
+	metaData[cluster] = data;
 }
 
 function fetchFiles(cluster, metaDataIndex) {
-	if(typeof metaData[metaDataIndex] !== 'undefined') {
-		var weekData = metaData[metaDataIndex];
+	if(typeof metaData[cluster][metaDataIndex] !== 'undefined') {
+		var weekData = metaData[cluster][metaDataIndex];
 
 		if(typeof fileData[cluster] === 'undefined')
 			fileData[cluster] = [];
@@ -74,13 +77,29 @@ function fetchFiles(cluster, metaDataIndex) {
 			fileData[cluster][metaDataIndex]["non_primary_api_response_time"] 	= nonPrimaryApiResponseTimeData[0];
 			fileData[cluster][metaDataIndex]["bulk_api_response_time"] 			= bulkApiResponseTimeData[0];
 
-			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
+			if(typeof metaData[cluster][metaDataIndex+1] !== 'undefined') {
 				fetchFiles(cluster, metaDataIndex+1);
 			} else {
+				processLabels(cluster);
 				processFiles(cluster);
 				mydisplayChart(cluster, []);
 			}
 		});
+	}
+}
+
+function processLabels(cluster) {
+	for(i in metaData[cluster]) {
+		var weekData = metaData[cluster][i];
+		if(typeof chartData[cluster] === 'undefined')
+			chartData[cluster] = [];
+		if(typeof chartData[cluster]["labels"] === 'undefined')
+			chartData[cluster]["labels"] = [];
+
+		var label = weekData.year + "-" + weekData.week;
+		if(!chartData[cluster]["labels"].includes(label))
+			chartData[cluster]["labels"].push(label);
+
 	}
 }
 
@@ -97,8 +116,6 @@ function processFiles(cluster, metaDataIndex) {
 }
 
 function processSingleFile(cluster, file, metaDataIndex, idx) {
-	console.log("inside processSingleFile");
-	console.log("cluster:"+cluster+" file:"+file+" metaDataIndex:"+metaDataIndex+" idx:"+idx);
 	var singleFile = fileData[cluster][metaDataIndex][file];
 	var csv = $.csv.toObjects(singleFile);
 	for(i in csv) {
@@ -141,7 +158,7 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 
 
 function mydisplayChart(cluster, filters) {
-	var labels = chartData[cluster]["metric_names"];
+	var labels = chartData[cluster]["labels"];
 	var datasets = [];
 	for(metric in chartData[cluster]["primary_api_error_stats"]) {
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
