@@ -69,6 +69,10 @@ function fetchFiles(metaDataIndex) {
 		).done(function(primaryApiErrorStatsData, nonPrimaryApiErrorStatsData) {
 			fileData[metaDataIndex]["primary_api_error_stats"] = primaryApiErrorStatsData[0];
 			fileData[metaDataIndex]["non_primary_api_error_stats"] = nonPrimaryApiErrorStatsData[0];
+
+			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
+				fetchFiles(metaDataIndex+1);
+			}
 		});
 	}
 }
