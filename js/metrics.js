@@ -16,11 +16,11 @@ $(document).ready(function() {
 
 function init(metaDataIndex) {
 	clearGlobals();
-	initMetaData();
+	initMetaData(metaDataIndex);
 	
 }
 
-function initMetaData() {
+function initMetaData(metaDataIndex) {
 	$.get("/metrics/data/in/meta.json", function(resp) {
 		saveMetaData(resp, metaDataIndex);
 	});
