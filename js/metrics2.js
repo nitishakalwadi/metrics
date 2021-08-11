@@ -47,6 +47,9 @@ function fetchFiles(metaDataIndex) {
 
 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
 		$.get(url, function(data) {
+			if(typeof fileData[metaDataIndex] === 'undefined')
+				fileData[metaDataIndex] = [];
+			
 			fileData[metaDataIndex]["primary_api_error_stats"] = data;
 
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
