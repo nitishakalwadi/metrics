@@ -1,10 +1,10 @@
 $(document).ready(function() {
 	
-	init();
+	filterInit();
 
 });
 
-function init() {
+function filterInit() {
 	initSelectFilter();
 }
 
