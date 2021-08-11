@@ -113,7 +113,7 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 		// chartData[cluster][file][metric.Name]["500"][idx] = metric.COUNT;
 		
 
-		var metricNames = array("count", "500");
+		var metricNames = ["count", "500"];
 		for(i in metricNames) {
 			metricName = metricNames[i];
 			for(i=0; i<chartData[cluster][file][metric.Name][metricName].length; i++) {
