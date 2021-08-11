@@ -9,5 +9,5 @@ function init() {
 }
 
 function initSelectFilter() {
-	$("#IN-select").multiselect();
+	// $("#IN-select").multiselect();
 }
