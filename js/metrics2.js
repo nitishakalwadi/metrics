@@ -78,13 +78,14 @@ function fetchFiles(cluster, metaDataIndex) {
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
 				fetchFiles(cluster, metaDataIndex+1);
 			} else {
-				processFiles(cluster, metaDataIndex, 0);
+				processFiles(cluster, metaDataIndex);
 			}
 		});
 	}
 }
 
-function processFiles(cluster, metaDataIndex, idx) {
+function processFiles(cluster, metaDataIndex) {
+	var idx = 0;
 	while(fileData[cluster][metaDataIndex] !== 'undefined') {
 		console.log("processing single file");
 		processSingleFile(cluster, 'primary_api_error_stats', metaDataIndex, idx);
@@ -94,6 +95,8 @@ function processFiles(cluster, metaDataIndex, idx) {
 }
 
 function processSingleFile(cluster, file, metaDataIndex, idx) {
+	console.log("inside processSingleFile");
+	console.log("cluster:"+cluster+" file:"+file+" metaDataIndex:"+metaDataIndex+" idx:"+idx);
 	var singleFile = fileData[cluster][metaDataIndex][file];
 	var csv = $.csv.toObjects(singleFile);
 	for(i in csv) {
