@@ -164,7 +164,6 @@ function initMultiSelect(data) {
 	// 	myMultiSelect.destroy();
 	// }
 
-	$("#IN-select").multiselect("destroy");
 	$("#IN-select").html("");
 	for(i in data) {
 		var option = $('<option/>');
@@ -177,6 +176,7 @@ function initMultiSelect(data) {
 			init(0);
 		}
 	}).multiselectfilter();
+	$("#IN-select").multiselect("refresh");
 
 }
 
