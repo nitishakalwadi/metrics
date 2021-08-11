@@ -78,6 +78,7 @@ function fetchFiles(cluster, metaDataIndex) {
 				fetchFiles(cluster, metaDataIndex+1);
 			} else {
 				processFiles(cluster);
+				mydisplayChart(cluster, []);
 			}
 		});
 	}
@@ -85,13 +86,6 @@ function fetchFiles(cluster, metaDataIndex) {
 
 function processFiles(cluster, metaDataIndex) {
 	var idx = 0;
-	// while(fileData[cluster][metaDataIndex] !== 'undefined') {
-	// 	console.log("processing single file");
-	// 	processSingleFile(cluster, 'primary_api_error_stats', metaDataIndex, idx);
-	// 	metaDataIndex++;
-	// 	idx++;
-	// }
-
 	for(i in fileData[cluster]) {
 		if(typeof fileData[cluster][i] !== 'undefined') {
 			console.log("processing single file");
@@ -145,76 +139,39 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 	}
 }
 
-function processAllWeeksPrimaryApiErrorStats(metaDataIndex, idx) {
-	if(typeof metaData[metaDataIndex] !== 'undefined') {
-		var weekData = metaData[metaDataIndex];
 
-		if(typeof primaryApiErrorStatsChartObj["labels"] === "undefined") {
-			primaryApiErrorStatsChartObj["labels"] = [];
-		}
-		label = weekData.year + "-" + weekData.week;
-		primaryApiErrorStatsChartObj["labels"].push(label);
+function mydisplayChart(cluster, filters) {
+	var labels = fileData[cluster]["metric_names"];
+	var datasets = [];
+	for(metric in fileData[cluster]["primary_api_error_stats"]) {
+		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
+		
+		singleDataset = data["data"][metric];
+		dataset = {
+			label: metric,
+			data: singleDataset["count"],
+			backgroundColor: bgRGB,
+			borderColor: bgRGB
 
-		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
-		$.get(url, function(resp) {
-			
-			processPrimaryApiErrorStatsSingleFile(resp, idx)
-
-			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
-				processAllWeeksPrimaryApiErrorStats(metaDataIndex+1, idx+1);
-			} else {
-				initFilters(primaryApiErrorStatsChartObj);
-				displayChart(primaryApiErrorStatsChartObj);	
-			}
-		});
+		};
+		datasets.push(dataset);
 	}
-}
 
-// function processAllWeeksPrimaryApiErrorStats(data) {
-// 	for(i in data) {
-// 		var weekData = data[i];
-		
-// 		if(typeof primaryApiErrorStatsChartObj["labels"] === "undefined") {
-// 			primaryApiErrorStatsChartObj["labels"] = [];
-// 		}
-// 		label = weekData.year + "-" + weekData.week;
-// 		primaryApiErrorStatsChartObj["labels"].push(label);
+	var data = {
+		labels: labels,
+		datasets: datasets
+	};
 
-// 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
-// 		$.get(url, processPrimaryApiErrorStatsSingleFile);
-// 	}
-// }
+	var config = {
+  		type: 'line',
+  		data,
+  		options: {}
+	};
 
-function processPrimaryApiErrorStatsSingleFile(data, idx) {
-	var csv = $.csv.toObjects(data);
-	for(i in csv) {
-		metric = csv[i];
-		if(typeof primaryApiErrorStatsChartObj["data"] === "undefined") {
-			primaryApiErrorStatsChartObj["data"] = [];
-		}
-		if(typeof primaryApiErrorStatsChartObj["data"][metric.Name] === "undefined") {
-			primaryApiErrorStatsChartObj["data"][metric.Name] = [];
-			primaryApiErrorStatsChartObj["data"][metric.Name]["count"] = [];
-		}
-		
-		//primaryApiErrorStatsChartObj["data"][metric.Name]["count"].push(metric.COUNT);
-		primaryApiErrorStatsChartObj["data"][metric.Name]["count"][idx] = metric.COUNT;
-
-		for(i=0; i<primaryApiErrorStatsChartObj["data"][metric.Name]["count"].length; i++) {
-			if(typeof primaryApiErrorStatsChartObj["data"][metric.Name]["count"][i] === 'undefined') {
-				primaryApiErrorStatsChartObj["data"][metric.Name]["count"][i] = 0;
-			}
-		}
-
-		if(typeof primaryApiErrorStatsChartObj["metric_names"] === 'undefined') {
-			primaryApiErrorStatsChartObj["metric_names"] = [];
-		}
-		if(!primaryApiErrorStatsChartObj["metric_names"].includes(metric.Name)) {
-			primaryApiErrorStatsChartObj["metric_names"].push(metric.Name);
-		}
-		
-	}
-	
+	myChart = new Chart(
+    	document.getElementById('IN-Chart'),
+    	config
+  	);
 }
 
 function displayChart(data) {
