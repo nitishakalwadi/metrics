@@ -141,9 +141,9 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 
 
 function mydisplayChart(cluster, filters) {
-	var labels = fileData[cluster]["metric_names"];
+	var labels = chartData[cluster]["metric_names"];
 	var datasets = [];
-	for(metric in fileData[cluster]["primary_api_error_stats"]) {
+	for(metric in chartData[cluster]["primary_api_error_stats"]) {
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
 		
 		singleDataset = data["data"][metric];
