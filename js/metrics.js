@@ -7,19 +7,25 @@ var baseUrltest = "/metrics/data/in/csv/2021/32/primary_api.csv";
 var metaData;
 var primaryApiErrorStatsChartObj = [];
 
+var myChart;
+
 
 $(document).ready(function() {
 	clearGlobals();
 	init(0);
 });
 
-init(metaDataIndex) {
+functioninit(metaDataIndex) {
 	$.get("/metrics/data/in/meta.json", function(resp) {
 		saveMetaData(resp, metaDataIndex);
 	});
 }
 
 function clearGlobals() {
+	if(typeof myChart !== 'undefined') {
+		myChart.destroy();
+	}
+
 	metaData = [];
 	primaryApiErrorStatsChartObj = [];
 }
@@ -129,7 +135,7 @@ function displayChart(data) {
   		options: {}
 	};
 
-	var myChart = new Chart(
+	myChart = new Chart(
     	document.getElementById('IN-Chart'),
     	config
   	);
