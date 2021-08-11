@@ -9,17 +9,24 @@ var primaryApiErrorStatsChartObj = [];
 
 
 $(document).ready(function() {
-
-	$.get("/metrics/data/in/meta.json", saveMetaData);
-
-	
-	
-
+	clearGlobals();
+	init(0);
 });
 
-function saveMetaData(data) {
+init(metaDataIndex) {
+	$.get("/metrics/data/in/meta.json", function(resp) {
+		saveMetaData(resp, metaDataIndex);
+	});
+}
+
+function clearGlobals() {
+	metaData = [];
+	primaryApiErrorStatsChartObj = [];
+}
+
+function saveMetaData(data, metaDataIndex) {
 	metaData = data;
-	processAllWeeksPrimaryApiErrorStats(0);
+	processAllWeeksPrimaryApiErrorStats(metaDataIndex, 0);
 	processAllWeeksNonPrimaryApiErrorStats(data);
 	processAllWeeksBulkApiErrorStats(data);
 
@@ -29,7 +36,7 @@ function saveMetaData(data) {
 	
 }
 
-function processAllWeeksPrimaryApiErrorStats(metaDataIndex) {
+function processAllWeeksPrimaryApiErrorStats(metaDataIndex, idx) {
 	if(typeof metaData[metaDataIndex] !== 'undefined') {
 		var weekData = metaData[metaDataIndex];
 
@@ -42,10 +49,10 @@ function processAllWeeksPrimaryApiErrorStats(metaDataIndex) {
 		var url = baseUrl + weekData.year + "/" + weekData.week + "/" + weekData.primary_api_error_stats;
 		$.get(url, function(resp) {
 			
-			processPrimaryApiErrorStatsSingleFile(resp)
+			processPrimaryApiErrorStatsSingleFile(resp, idx)
 
 			if(typeof metaData[metaDataIndex+1] !== 'undefined') {
-				processAllWeeksPrimaryApiErrorStats(metaDataIndex+1);
+				processAllWeeksPrimaryApiErrorStats(metaDataIndex+1, idx+1);
 			} else {
 				displayChart(primaryApiErrorStatsChartObj);	
 			}
@@ -68,7 +75,7 @@ function processAllWeeksPrimaryApiErrorStats(metaDataIndex) {
 // 	}
 // }
 
-function processPrimaryApiErrorStatsSingleFile(data) {
+function processPrimaryApiErrorStatsSingleFile(data, idx) {
 	var csv = $.csv.toObjects(data);
 	for(i in csv) {
 		metric = csv[i];
@@ -79,33 +86,28 @@ function processPrimaryApiErrorStatsSingleFile(data) {
 			primaryApiErrorStatsChartObj["data"][metric.Name] = [];
 			primaryApiErrorStatsChartObj["data"][metric.Name]["count"] = [];
 		}
-		console.log(metric);
-		console.log(metric.COUNT);
-		primaryApiErrorStatsChartObj["data"][metric.Name]["count"].push(metric.COUNT);
+		
+		//primaryApiErrorStatsChartObj["data"][metric.Name]["count"].push(metric.COUNT);
+		primaryApiErrorStatsChartObj["data"][metric.Name]["count"][idx] = metric.COUNT;
+
+		for(i in primaryApiErrorStatsChartObj["data"][metric.Name]["count"]) {
+			if(typeof primaryApiErrorStatsChartObj["data"][metric.Name]["count"][i] === 'undefined') {
+				primaryApiErrorStatsChartObj["data"][metric.Name]["count"][i] = 0;
+			}
+		}
 	}
 	
 }
 
 function displayChart(data) {
 
-	console.log(data);
-	// var labels = [
-	// 	'January',
-	// 	'February',
-	// 	'March',
-	// 	'April',
-	// 	'May',
-	// 	'June',
-	// ];
 	var labels = data["labels"];
 	var datasets = [];
-	console.log(data["data"]);
 	for(metric in data["data"]) {
 		console.log("here man");
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
 		
 		singleDataset = data["data"][metric];
-		console.log(singleDataset);
 		dataset = {
 			label: metric,
 			data: singleDataset["count"],
@@ -113,22 +115,9 @@ function displayChart(data) {
 			borderColor: bgRGB
 
 		};
-		console.log(dataset);
 		datasets.push(dataset);
-		console.log(datasets);
 	}
-	console.log(datasets);
-
-	// var data = {
-	// labels: labels,
-	// datasets: [{
- //  			label: 'My First dataset',
-	//   		backgroundColor: 'rgb(255, 99, 132)',
- //  			borderColor: 'rgb(255, 99, 132)',
- //  			data: [0, 10, 5, 2, 20, 30, 45],
-	// 	}]
-	// };
-
+	
 	var data = {
 		labels: labels,
 		datasets: datasets
