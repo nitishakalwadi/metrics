@@ -21,7 +21,7 @@ function init() {
 }
 
 function initMetaData(cluster) {
-	url = baseUrl + cluster + "meta.json";
+	url = baseUrl + cluster + "/meta.json";
 	$.get(url, function(resp) {
 		saveMetaData(resp);
 		fetchFiles(cluster, 0);
