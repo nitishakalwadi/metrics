@@ -240,7 +240,7 @@ function applyFilters(cluster) {
 	var selectedOptions = $("#IN-select").val();
 	if(selectedOptions !== null) {
 		for(metricName in filteredChartData[cluster]["primary_api_error_stats"]) {
-			if(selectedOptions.includes(metricName)) {
+			if(!selectedOptions.includes(metricName)) {
 				delete filteredChartData[cluster]["primary_api_error_stats"][metricName];
 			}
 		}
