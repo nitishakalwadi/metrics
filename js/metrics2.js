@@ -110,7 +110,6 @@ function processFiles(cluster, metaDataIndex) {
 	var idx = 0;
 	for(i in fileData[cluster]) {
 		if(typeof fileData[cluster][i] !== 'undefined') {
-			console.log("processing single file");
 			processSingleFile(cluster, 'primary_api_error_stats', i, idx);
 			i++;
 			idx++;
@@ -238,7 +237,7 @@ function displayChart(data, cluster, filters) {
 
 function applyFilters(cluster) {
 	var filteredChartData = chartData;
-	var selectedOptions = $("$IN-select").val();
+	var selectedOptions = $("#IN-select").val();
 	if(selectedOptions !== null) {
 		for(metricName in filteredChartData[cluster]["primary_api_error_stats"]) {
 			if(selectedOptions.includes(metricName)) {
