@@ -178,15 +178,19 @@ function displayChart(cdata, cluster) {
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
 		
 		singleDataset = cdata[cluster]["primary_api_error_stats"][metric];
-		console.log(singleDataset);
-		dataset = {
-			label: metric,
-			data: singleDataset["count"],
-			backgroundColor: bgRGB,
-			borderColor: bgRGB
 
-		};
-		datasets.push(dataset);
+		if(singleDataset["display"] === 'undefined' || singleDataset["display"] === true) {
+			console.log(singleDataset);
+			dataset = {
+				label: metric,
+				data: singleDataset["count"],
+				backgroundColor: bgRGB,
+				borderColor: bgRGB
+
+			};
+			datasets.push(dataset);	
+		}
+		
 	}
 
 	console.log(datasets);
@@ -246,13 +250,20 @@ function displayChart(cdata, cluster) {
 //   	);
 // }
 
+function clearFilters(cluster) {
+	for(metricName in chartData[cluster]["primary_api_error_stats"]) {
+		chartData[cluster]["primary_api_error_stats"][metricName]["display"] = true;
+	}
+}
+
 function applyFilters(cluster) {
+	clearFilters(cluster);
 	var filteredChartData = chartData;
 	var selectedOptions = $("#IN-select").val();
 	if(selectedOptions !== null) {
-		for(metricName in filteredChartData[cluster]["primary_api_error_stats"]) {
+		for(metricName in chartData[cluster]["primary_api_error_stats"]) {
 			if(!selectedOptions.includes(metricName)) {
-				delete filteredChartData[cluster]["primary_api_error_stats"][metricName];
+				chartData[cluster]["primary_api_error_stats"][metricName]["display"] = false;
 			}
 		}
 	}
