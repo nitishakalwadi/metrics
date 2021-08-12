@@ -1,0 +1,9 @@
+Name,COUNT,500 %,520 %,521 %,400 %
+WebTransaction/RestWebService/v1.1/organization/configs (GET),2135,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/coupon/series (GET),381,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/product/attributes (GET),180,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/organization/entities (GET),176,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/product/get (GET),12,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/add (POST),6,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/transactions/bulk (POST),3,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/changeRequest/bulk (POST),3,0.0,0.0,0.0,0.0

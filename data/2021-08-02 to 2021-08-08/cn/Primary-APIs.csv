@@ -1,0 +1,26 @@
+Name,COUNT,500 %,520 %,521 %,400 %
+WebTransaction/RestWebService/v1.1/transaction/add (POST),42553,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/transactions (GET),42269,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id} (GET),19843,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/lookup (GET),8423,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/get (GET),7435,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/coupons (GET),2719,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/search (GET),1519,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/subscriptions (POST),942,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id} (PUT),827,0.0,0.0,0.6045949214026602,0.0
+WebTransaction/RestWebService/v1.1/customer/add (POST),740,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/trackers (GET),705,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/changeIdentifier (POST),525,0.19047619047619047,0.0,0.38095238095238093,0.0
+WebTransaction/RestWebService/v1.1/transaction/add_with_local_currency (POST),386,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/interaction (GET),297,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/preferences (GET),214,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers (POST),116,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/subscriptions (GET),54,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/update (POST),46,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/subscriptions (GET),7,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/pointsTransfers (GET),6,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/transactions (POST),6,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/customerDetails (GET),3,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/transactions/{id} (GET),3,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/changeLabels (POST),3,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/userdetails/{id} (GET),1,0.0,0.0,0.0,0.0

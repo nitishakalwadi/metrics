@@ -1,0 +1,30 @@
+Name,count,Duration (99%) * 1000.0,Duration (95%) * 1000.0,Duration (90%) * 1000.0,Duration (75%) * 1000.0
+WebTransaction/RestWebService/v1.1/transaction/add (POST),42553,1890.625,1578.125,277.34375,126.953125
+WebTransaction/RestWebService/v1.1/customer/transactions (GET),42269,464.84375,292.96875,154.296875,77.1484375
+WebTransaction/RestWebService/v2/customers/{id} (GET),19843,292.96875,134.765625,120.1171875,106.4453125
+WebTransaction/RestWebService/v2/customers/lookup (GET),8423,77.1484375,48.33984375,42.48046875,37.59765625
+WebTransaction/RestWebService/v1.1/customer/get (GET),7435,355.46875,236.328125,205.078125,166.015625
+WebTransaction/RestWebService/v1.1/customer/coupons (GET),2719,217.7734375,133.7890625,107.91015625,72.75390625
+WebTransaction/RestWebService/v2/customers/search (GET),1519,3968.75,2468.75,2156.25,2031.25
+WebTransaction/RestWebService/v1.1/customer/redemptions (GET),1120,1234.375,402.34375,177.734375,96.6796875
+WebTransaction/Servlet/jerseyServlet,1114,61.767578125,22.8271484375,20.6298828125,17.2119140625
+WebTransaction/RestWebService/v2/customers/{id}/subscriptions (POST),942,209.47265625,144.04296875,120.361328125,103.759765625
+WebTransaction/RestWebService/v2/customers/{id} (PUT),827,1109.375,976.5625,882.8125,679.6875
+WebTransaction/RestWebService/v1.1/customer/add (POST),750,1710.9375,1351.5625,1179.6875,1007.8125
+WebTransaction/RestWebService/v2/customers/{id}/trackers (GET),705,169.921875,110.3515625,102.5390625,96.6796875
+WebTransaction/RestWebService/v2/customers/{id}/changeIdentifier (POST),525,617.1875,228.515625,166.015625,124.0234375
+WebTransaction/RestWebService/v1.1/transaction/add_with_local_currency (POST),386,2359.375,2078.125,2015.625,1835.9375
+WebTransaction/RestWebService/v1.1/customer/search (GET),330,378.90625,185.546875,146.484375,116.2109375
+WebTransaction/RestWebService/v1.1/customer/interaction (GET),297,247.0703125,143.5546875,124.51171875,108.88671875
+WebTransaction/RestWebService/v1.1/customer/preferences (GET),214,80.322265625,72.509765625,63.720703125,48.4619140625
+WebTransaction/RestWebService/v1.1/customer/notes (GET),160,37.841796875,31.1279296875,28.6865234375,25.7568359375
+WebTransaction/RestWebService/v2/customers (POST),116,1050.78125,986.328125,865.234375,798.828125
+WebTransaction/RestWebService/v1.1/customer/subscriptions (GET),54,529.8279,208.49609375,178.22265625,170.41015625
+WebTransaction/RestWebService/v1.1/customer/update (POST),46,643.1826000000001,551.7578125,504.8828125,464.35546875
+WebTransaction/RestWebService/v2/customers/{id}/subscriptions (GET),7,3079.4424999999997,3079.4424999999997,3079.4424999999997,3015.625
+WebTransaction/RestWebService/v2/customers/{id}/pointsTransfers (GET),6,189.60083,189.60083,189.60083,165.4052734375
+WebTransaction/RestWebService/v2/transactions (POST),6,1056.503,1056.503,1056.503,1012.20703125
+WebTransaction/RestWebService/v2/customers/{id}/customerDetails (GET),3,77.28523,77.28523,77.28523,77.28523
+WebTransaction/RestWebService/v2/transactions/{id} (GET),3,93.54666,93.54666,93.54666,93.54666
+WebTransaction/RestWebService/v2/customers/{id}/changeLabels (POST),3,1853.0477999999998,1853.0477999999998,1853.0477999999998,1853.0477999999998
+WebTransaction/RestWebService/v2/customers/userdetails/{id} (GET),1,2918.0076000000004,2918.0076000000004,2918.0076000000004,2918.0076000000004

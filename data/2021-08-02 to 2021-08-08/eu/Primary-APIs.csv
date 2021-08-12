@@ -1,0 +1,26 @@
+Name,COUNT,500 %,520 %,521 %,400 %
+WebTransaction/RestWebService/v1.1/customer/get (GET),251507,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/transaction/add (POST),208925,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/transaction/add_with_local_currency (POST),72063,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/transactions (GET),18160,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/update (POST),17391,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/add (POST),9105,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/coupons (GET),6932,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/customerDetails (GET),1371,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id} (GET),600,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/interaction (GET),447,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/preferences (GET),281,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/subscriptions (GET),153,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/changeIdentifier (POST),102,0.0,0.0,2.941176470588235,0.0
+WebTransaction/RestWebService/v2/customers (POST),97,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/search (GET),26,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/subscriptions (POST),22,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id} (PUT),13,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/lookup (GET),12,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/transactions/bulk (POST),9,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/subscriptions (GET),5,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/pointsTransfers (GET),4,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/transactions (POST),4,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/update_identity (POST),3,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/customers/{id}/changeLabels (POST),3,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/transactions/{id} (GET),2,0.0,0.0,0.0,0.0

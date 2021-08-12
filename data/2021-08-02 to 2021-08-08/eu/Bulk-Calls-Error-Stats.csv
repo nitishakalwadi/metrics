@@ -1,0 +1,15 @@
+Name,COUNT,500 %,520 %,521 %,400 %
+WebTransaction/RestWebService/v1.1/organization/configs (GET),9900,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/coupon/series (GET),1356,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/organization/entities (GET),684,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/transaction/add_with_local_currency (POST),231,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/product/attributes (GET),202,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/subscriptions (POST),110,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/transactions/bulk (POST),107,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/communications/sms (POST),49,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/transaction/add (POST),39,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/product/get (GET),13,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/transaction/get (GET),9,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/customer/add (POST),5,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v1.1/product/colors (GET),5,0.0,0.0,0.0,0.0
+WebTransaction/RestWebService/v2/changeRequest/bulk (POST),3,0.0,0.0,0.0,0.0

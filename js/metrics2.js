@@ -149,7 +149,8 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 			metricName = metricNames[i];
 			for(i=0; i<chartData[cluster][file][metric.Name][metricName].length; i++) {
 				if(typeof chartData[cluster][file][metric.Name][metricName][i] === 'undefined') {
-					chartData[cluster][file][metric.Name][metricName][i] = 0;
+					// chartData[cluster][file][metric.Name][metricName][i] = 0;
+					chartData[cluster][file][metric.Name][metricName][i] = "NaN";
 				}
 			}
 		}

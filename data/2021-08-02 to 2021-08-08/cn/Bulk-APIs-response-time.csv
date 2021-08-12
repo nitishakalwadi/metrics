@@ -1,0 +1,9 @@
+Name,count,Average Batch Size,Duration (95%) * 1000.0,Duration (90%) * 1000.0,Duration (75%) * 1000.0
+WebTransaction/RestWebService/v1.1/organization/configs (GET),2135,682.0238875878221,121.58203125,105.95703125,89.35546875
+WebTransaction/RestWebService/v1.1/coupon/series (GET),381,162.56430446194227,447.265625,404.296875,345.703125
+WebTransaction/RestWebService/v1.1/product/attributes (GET),180,4.127777777777778,79.58984375,66.89453125,55.419921875
+WebTransaction/RestWebService/v1.1/organization/entities (GET),176,376.8238636363636,1109.375,835.9375,726.5625
+WebTransaction/RestWebService/v1.1/product/get (GET),12,2.0,38.06485,37.2314453125,25.93994140625
+WebTransaction/RestWebService/v1.1/customer/add (POST),6,2.0,1016.7971,1016.7971,791.50390625
+WebTransaction/RestWebService/v2/transactions/bulk (POST),3,2.0,737.148,737.148,737.148
+WebTransaction/RestWebService/v2/changeRequest/bulk (POST),3,2.0,474.522,474.522,474.522
