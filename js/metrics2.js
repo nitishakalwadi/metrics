@@ -84,7 +84,7 @@ function fetchFiles(cluster, metaDataIndex) {
 				processLabels(cluster);
 				processFiles(cluster);
 				var filteredChartData = applyFilters(cluster);
-				displayChart(filteredChartData, cluster, []);
+				displayChart(filteredChartData, cluster);
 				initFilters(cluster, []);
 			}
 		});
@@ -159,7 +159,7 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 }
 
 
-function displayChart(data, cluster, filters) {
+function displayChart(data, cluster) {
 	if(typeof myChart !== 'undefined') {
 		myChart.destroy();
 	}
@@ -271,7 +271,7 @@ function initMultiSelect(cluster, filters) {
 		click: function(event, ui) {
 			// init(0);
 			var filteredChartData = applyFilters("in");
-			displayChart(filteredChartData);
+			displayChart(filteredChartData, "in");
 		}
 	}).multiselectfilter();
 	$("#IN-select").multiselect("refresh");
