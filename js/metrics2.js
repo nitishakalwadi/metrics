@@ -186,14 +186,14 @@ function displayChart(data, cluster) {
 		datasets.push(dataset);
 	}
 
-	var data = {
+	var cdata = {
 		labels: labels,
 		datasets: datasets
 	};
 
 	var config = {
   		type: 'line',
-  		data,
+  		cdata,
   		options: {}
 	};
 
