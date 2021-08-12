@@ -165,19 +165,19 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 }
 
 
-function displayChart(data, cluster) {
+function displayChart(cdata, cluster) {
 	console.log(data);
 	if(typeof myChart !== 'undefined') {
 		myChart.destroy();
 	}
 
-	var labels = data[cluster]["labels"];
+	var labels = cdata[cluster]["labels"];
 	var datasets = [];
 	console.log("before loop");
-	for(metric in data[cluster]["primary_api_error_stats"]) {
+	for(metric in cdata[cluster]["primary_api_error_stats"]) {
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
 		
-		singleDataset = data[cluster]["primary_api_error_stats"][metric];
+		singleDataset = cdata[cluster]["primary_api_error_stats"][metric];
 		console.log(singleDataset);
 		dataset = {
 			label: metric,
@@ -191,14 +191,14 @@ function displayChart(data, cluster) {
 
 	console.log(datasets);
 
-	var cdata = {
+	var data = {
 		labels: labels,
 		datasets: datasets
 	};
 
 	var config = {
   		type: 'line',
-  		cdata,
+  		data,
   		options: {}
 	};
 
