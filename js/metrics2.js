@@ -83,6 +83,7 @@ function fetchFiles(cluster, metaDataIndex) {
 				processLabels(cluster);
 				processFiles(cluster);
 				mydisplayChart(cluster, []);
+				initFilters(cluster, []);
 			}
 		});
 	}
@@ -226,19 +227,21 @@ function displayChart(data) {
   	);
 }
 
-function initFilters(data) {
-	initMultiSelect(data["metric_names"]);
+function initFilters(cluster, filters) {
+	initMultiSelect(cluster, filters);
 }
 
-function initMultiSelect(data) {
+function initMultiSelect(cluster, filters) {
 	// if(typeof myMultiSelect !== 'undefined') {
 	// 	myMultiSelect.destroy();
 	// }
 
+	var selectOptions = $chartData[cluster]["metric_names"]
 	$("#IN-select").html("");
-	for(i in data) {
+	for(i in selectOptions) {
+		var selectOption = selectOptions[i];
 		var option = $('<option/>');
-		option.val(data[i]).html(data[i]);
+		option.val(selectOption).html(selectOption);
 		$("#IN-select").append(option);
 	}
 
