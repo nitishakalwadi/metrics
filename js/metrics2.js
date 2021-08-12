@@ -1,6 +1,8 @@
 //csv to object library used
 //https://github.com/evanplaice/jquery-csv/
 
+const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
+
 var baseUrl = "/metrics/data/";
 
 var metaData = [];
