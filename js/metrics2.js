@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 	$(document).on("click", "#IN-apply-filter", function() {
 		var filteredChartData = applyFilters("in");
-		displayChart(filteredChartData);
+		displayChart(filteredChartData, "in");
 
 	});
 });
