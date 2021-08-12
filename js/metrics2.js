@@ -82,7 +82,8 @@ function fetchFiles(cluster, metaDataIndex) {
 			} else {
 				processLabels(cluster);
 				processFiles(cluster);
-				mydisplayChart(cluster, []);
+				// applyFilters();
+				displayChart(cluster, []);
 				initFilters(cluster, []);
 			}
 		});
@@ -158,7 +159,7 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 }
 
 
-function mydisplayChart(cluster, filters) {
+function displayChart(cluster, filters) {
 	var labels = chartData[cluster]["labels"];
 	var datasets = [];
 	for(metric in chartData[cluster]["primary_api_error_stats"]) {
@@ -192,40 +193,6 @@ function mydisplayChart(cluster, filters) {
   	);
 }
 
-function displayChart(data) {
-
-	var labels = data["labels"];
-	var datasets = [];
-	for(metric in data["data"]) {
-		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
-		
-		singleDataset = data["data"][metric];
-		dataset = {
-			label: metric,
-			data: singleDataset["count"],
-			backgroundColor: bgRGB,
-			borderColor: bgRGB
-
-		};
-		datasets.push(dataset);
-	}
-	
-	var data = {
-		labels: labels,
-		datasets: datasets
-	};
-
-	var config = {
-  		type: 'line',
-  		data,
-  		options: {}
-	};
-
-	myChart = new Chart(
-    	document.getElementById('IN-Chart'),
-    	config
-  	);
-}
 
 function initFilters(cluster, filters) {
 	initMultiSelect(cluster, filters);
@@ -236,7 +203,7 @@ function initMultiSelect(cluster, filters) {
 	// 	myMultiSelect.destroy();
 	// }
 
-	var selectOptions = $chartData[cluster]["metric_names"]
+	var selectOptions = chartData[cluster]["metric_names"]
 	$("#IN-select").html("");
 	for(i in selectOptions) {
 		var selectOption = selectOptions[i];
