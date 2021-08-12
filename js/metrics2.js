@@ -13,6 +13,12 @@ var myMultiSelect;
 
 $(document).ready(function() {
 	init();
+
+	$(document).on("click", "#IN-apply-filter", function() {
+		var filteredChartData = applyFilters("in");
+		displayChart(filteredChartData);
+
+	});
 });
 
 function init() {
@@ -277,6 +283,8 @@ function initMultiSelect(cluster, filters) {
 	$("#IN-select").multiselect("refresh");
 
 }
+
+
 
 function processAllWeeksNonPrimaryApiErrorStats(data) {
 
