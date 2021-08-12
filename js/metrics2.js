@@ -269,7 +269,9 @@ function initMultiSelect(cluster, filters) {
 
 	$("#IN-select").multiselect({
 		click: function(event, ui) {
-			init(0);
+			// init(0);
+			var filteredChartData = applyFilters("in");
+			displayChart(filteredChartData);
 		}
 	}).multiselectfilter();
 	$("#IN-select").multiselect("refresh");
