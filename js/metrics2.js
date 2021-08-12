@@ -77,13 +77,14 @@ function fetchFiles(cluster, metaDataIndex) {
 			fileData[cluster][metaDataIndex]["non_primary_api_response_time"] 	= nonPrimaryApiResponseTimeData[0];
 			fileData[cluster][metaDataIndex]["bulk_api_response_time"] 			= bulkApiResponseTimeData[0];
 
+			//process next week files if present
 			if(typeof metaData[cluster][metaDataIndex+1] !== 'undefined') {
 				fetchFiles(cluster, metaDataIndex+1);
 			} else {
 				processLabels(cluster);
 				processFiles(cluster);
-				// applyFilters();
-				displayChart(cluster, []);
+				var filteredChartData = applyFilters(cluster);
+				displayChart(filteredChartData, cluster, []);
 				initFilters(cluster, []);
 			}
 		});
@@ -159,13 +160,17 @@ function processSingleFile(cluster, file, metaDataIndex, idx) {
 }
 
 
-function displayChart(cluster, filters) {
-	var labels = chartData[cluster]["labels"];
+function displayChart(data, cluster, filters) {
+	if(typeof myChart !== 'undefined') {
+		myChart.destroy();
+	}
+
+	var labels = data[cluster]["labels"];
 	var datasets = [];
-	for(metric in chartData[cluster]["primary_api_error_stats"]) {
+	for(metric in data[cluster]["primary_api_error_stats"]) {
 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
 		
-		singleDataset = chartData[cluster]["primary_api_error_stats"][metric];
+		singleDataset = data[cluster]["primary_api_error_stats"][metric];
 		dataset = {
 			label: metric,
 			data: singleDataset["count"],
@@ -193,6 +198,57 @@ function displayChart(cluster, filters) {
   	);
 }
 
+// function displayChart(cluster, filters) {
+// 	if(typeof myChart !== 'undefined') {
+// 		myChart.destroy();
+// 	}
+
+// 	var labels = chartData[cluster]["labels"];
+// 	var datasets = [];
+// 	for(metric in chartData[cluster]["primary_api_error_stats"]) {
+// 		var bgRGB = "rgb(" + getColor() + "," + getColor() + "," + getColor() + ")";
+		
+// 		singleDataset = chartData[cluster]["primary_api_error_stats"][metric];
+// 		dataset = {
+// 			label: metric,
+// 			data: singleDataset["count"],
+// 			backgroundColor: bgRGB,
+// 			borderColor: bgRGB
+
+// 		};
+// 		datasets.push(dataset);
+// 	}
+
+// 	var data = {
+// 		labels: labels,
+// 		datasets: datasets
+// 	};
+
+// 	var config = {
+//   		type: 'line',
+//   		data,
+//   		options: {}
+// 	};
+
+// 	myChart = new Chart(
+//     	document.getElementById('IN-Chart'),
+//     	config
+//   	);
+// }
+
+function applyFilters(cluster) {
+	var filteredChartData = chartData;
+	var selectedOptions = $("$IN-select").val();
+	if(selectedOptions !== null) {
+		for(metricName in filteredChartData[cluster]["primary_api_error_stats"]) {
+			if(selectedOptions.includes(metricName)) {
+				delete filteredChartData[cluster]["primary_api_error_stats"][metricName];
+			}
+		}
+	}
+
+	return filteredChartData;
+}
 
 function initFilters(cluster, filters) {
 	initMultiSelect(cluster, filters);
