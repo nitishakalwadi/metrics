@@ -186,8 +186,10 @@ function displayChart(cdata, cluster) {
 				label: metric,
 				data: singleDataset["count"],
 				backgroundColor: bgRGB,
-				borderColor: bgRGB
-
+				borderColor: bgRGB,
+				segment: {
+					borderDash: ctx => skipped(ctx, [2, 2]),
+      			}
 			};
 			datasets.push(dataset);	
 		}
